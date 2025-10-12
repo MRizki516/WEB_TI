@@ -69,6 +69,12 @@
             color: white;
             font-weight: bold;
             font-size: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .logo-text h1 {
@@ -118,6 +124,121 @@
             padding: 80px 20px;
             color: white;
             animation: fadeIn 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background Icons */
+        .tech-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .tech-icon {
+            position: absolute;
+            font-size: 40px;
+            color: white;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .tech-icon:nth-child(1) {
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .tech-icon:nth-child(2) {
+            left: 20%;
+            top: 60%;
+            animation-delay: 2s;
+            animation-duration: 30s;
+        }
+
+        .tech-icon:nth-child(3) {
+            left: 70%;
+            top: 30%;
+            animation-delay: 4s;
+            animation-duration: 28s;
+        }
+
+        .tech-icon:nth-child(4) {
+            left: 80%;
+            top: 70%;
+            animation-delay: 6s;
+            animation-duration: 32s;
+        }
+
+        .tech-icon:nth-child(5) {
+            left: 50%;
+            top: 40%;
+            animation-delay: 8s;
+            animation-duration: 26s;
+        }
+
+        .tech-icon:nth-child(6) {
+            left: 30%;
+            top: 80%;
+            animation-delay: 3s;
+            animation-duration: 29s;
+        }
+
+        .tech-icon:nth-child(7) {
+            left: 60%;
+            top: 15%;
+            animation-delay: 5s;
+            animation-duration: 27s;
+        }
+
+        .tech-icon:nth-child(8) {
+            left: 85%;
+            top: 45%;
+            animation-delay: 7s;
+            animation-duration: 31s;
+        }
+
+        .tech-icon:nth-child(9) {
+            left: 15%;
+            top: 50%;
+            animation-delay: 1s;
+            animation-duration: 24s;
+        }
+
+        .tech-icon:nth-child(10) {
+            left: 45%;
+            top: 75%;
+            animation-delay: 9s;
+            animation-duration: 33s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px) rotate(5deg);
+                opacity: 0.15;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-10px) rotate(-5deg);
+                opacity: 0.2;
+            }
+            75% {
+                transform: translateY(-30px) translateX(5px) rotate(3deg);
+                opacity: 0.15;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes fadeIn {
@@ -170,6 +291,205 @@
             color: #667eea;
             margin-bottom: 30px;
             text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .leader-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .leader-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            border: 5px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .leader-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .leader-photo.placeholder {
+            font-size: 60px;
+        }
+
+        .leader-role {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .leader-name {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .leader-nim {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .leader-bio {
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Members Section */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .member-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: fadeInScale 0.5s ease;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .member-card:nth-child(1) { animation-delay: 0.1s; }
+        .member-card:nth-child(2) { animation-delay: 0.15s; }
+        .member-card:nth-child(3) { animation-delay: 0.2s; }
+        .member-card:nth-child(4) { animation-delay: 0.25s; }
+        .member-card:nth-child(5) { animation-delay: 0.3s; }
+        .member-card:nth-child(6) { animation-delay: 0.35s; }
+        .member-card:nth-child(7) { animation-delay: 0.4s; }
+        .member-card:nth-child(8) { animation-delay: 0.45s; }
+        .member-card:nth-child(9) { animation-delay: 0.5s; }
+        .member-card:nth-child(10) { animation-delay: 0.55s; }
+        .member-card:nth-child(11) { animation-delay: 0.6s; }
+        .member-card:nth-child(12) { animation-delay: 0.65s; }
+        .member-card:nth-child(13) { animation-delay: 0.7s; }
+        .member-card:nth-child(14) { animation-delay: 0.75s; }
+        .member-card:nth-child(15) { animation-delay: 0.8s; }
+        .member-card:nth-child(16) { animation-delay: 0.85s; }
+
+        .member-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .member-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .member-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .member-card:hover .member-name {
+            color: white;
+        }
+
+        .member-nim {
+            font-size: 14px;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .member-card:hover .member-nim {
+            color: rgba(255,255,255,0.9);
         }
 
         .cards {
@@ -282,6 +602,18 @@
             .hero p {
                 font-size: 16px;
             }
+
+            .leadership {
+                grid-template-columns: 1fr;
+            }
+
+            .members-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .tech-icon {
+                font-size: 30px;
+            }
         }
     </style>
 </head>
@@ -298,8 +630,10 @@
                 </div>
                 <nav>
                     <a href="#beranda">Beranda</a>
+                    <a href="#pengurus">Pengurus</a>
+                    <a href="#anggota">Anggota</a>
                     <a href="#tentang">Tentang</a>
-                    <a href="#materi">Materi</a>
+                    <a href="#materi">Mata Kuliah</a>
                     <a href="#kontak">Kontak</a>
                 </nav>
             </div>
@@ -307,15 +641,62 @@
     </header>
 
     <section class="hero" id="beranda">
-        <div class="container">
+        <!-- Animated Tech Icons Background -->
+        <div class="tech-icons">
+            <div class="tech-icon">💻</div>
+            <div class="tech-icon">🖥️</div>
+            <div class="tech-icon">📱</div>
+            <div class="tech-icon">⚙️</div>
+            <div class="tech-icon">🌐</div>
+            <div class="tech-icon">🔒</div>
+            <div class="tech-icon">☁️</div>
+            <div class="tech-icon">🚀</div>
+            <div class="tech-icon">💡</div>
+            <div class="tech-icon">🔧</div>
+        </div>
+        
+        <div class="container hero-content">
             <h2>Teknologi Informasi</h2>
             <p>Universitas Bina Sarana Informatika - Kelas 17.1A.06</p>
-            <a href="#tentang" class="btn">Pelajari Lebih Lanjut</a>
+            <a href="#pengurus" class="btn">Pelajari Lebih Lanjut</a>
         </div>
     </section>
 
     <div class="content">
         <div class="container">
+            <!-- Leadership Section -->
+            <section class="section" id="pengurus">
+                <h3>Pengurus Kelas</h3>
+                <div class="leadership">
+                    <div class="leader-card">
+                        <div class="leader-photo" id="ketua-photo">
+                            <span class="placeholder-text">MB</span>
+                        </div>
+                        <div class="leader-role">Ketua Kelas</div>
+                        <div class="leader-name">Marsya Briano</div>
+                        <div class="leader-nim">NIM: 17250532</div>
+                        <p class="leader-bio">Memimpin dan mengkoordinasi seluruh kegiatan kelas serta menjadi penghubung antara mahasiswa dan dosen.</p>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-photo" id="wakil-photo">
+                            <span class="placeholder-text">AR</span>
+                        </div>
+                        <div class="leader-role">Wakil Ketua Kelas</div>
+                        <div class="leader-name">Aditya Rahman</div>
+                        <div class="leader-nim">NIM: 17250427</div>
+                        <p class="leader-bio">Membantu ketua kelas dalam menjalankan tugasnya dan menggantikan ketua saat berhalangan.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Members Section -->
+            <section class="section" id="anggota">
+                <h3>Anggota Kelas</h3>
+                <div class="members-grid" id="members-container">
+                    <!-- Members will be generated by JavaScript -->
+                </div>
+            </section>
+
             <section class="section" id="tentang">
                 <div class="about-class">
                     <h4>Tentang Kelas 17.1A.06</h4>
@@ -326,7 +707,7 @@
                             <span class="stat-label">Mahasiswa Aktif</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">7</span>
+                            <span class="stat-number">6</span>
                             <span class="stat-label">Mata Kuliah</span>
                         </div>
                         <div class="stat-item">
@@ -338,37 +719,37 @@
             </section>
 
             <section class="section" id="materi">
-                <h3>Mata Kuliah Unggulan</h3>
+                <h3>Mata Kuliah Semester Ini</h3>
                 <div class="cards">
                     <div class="card">
+                        <div class="card-icon">🧩</div>
+                        <h4>Logika & Algoritma</h4>
+                        <p>Mempelajari dasar-dasar pemikiran logis dan algoritma pemrograman untuk memecahkan masalah secara sistematis dan efisien.</p>
+                    </div>
+                    <div class="card">
                         <div class="card-icon">💻</div>
-                        <h4>Pemrograman</h4>
-                        <p>Mempelajari bahasa pemrograman seperti Java, Python, PHP, dan JavaScript untuk pengembangan aplikasi modern.</p>
+                        <h4>Dasar Pemrograman</h4>
+                        <p>Memahami konsep fundamental pemrograman, struktur data dasar, dan praktik coding menggunakan bahasa pemrograman modern.</p>
                     </div>
                     <div class="card">
-                        <div class="card-icon">🗄️</div>
-                        <h4>Database</h4>
-                        <p>Menguasai sistem manajemen database seperti MySQL, PostgreSQL, dan MongoDB untuk pengelolaan data.</p>
+                        <div class="card-icon">💼</div>
+                        <h4>Entrepreneurship</h4>
+                        <p>Mengembangkan jiwa kewirausahaan dan kemampuan berbisnis di bidang teknologi informasi untuk masa depan yang inovatif.</p>
                     </div>
                     <div class="card">
-                        <div class="card-icon">🌐</div>
-                        <h4>Web Development</h4>
-                        <p>Membuat website responsif dan interaktif menggunakan HTML, CSS, JavaScript dan framework modern.</p>
+                        <div class="card-icon">🌍</div>
+                        <h4>Bahasa Inggris</h4>
+                        <p>Meningkatkan kemampuan komunikasi bahasa Inggris dalam konteks teknologi dan profesional untuk skala global.</p>
                     </div>
                     <div class="card">
-                        <div class="card-icon">🔒</div>
-                        <h4>Keamanan Siber</h4>
-                        <p>Memahami prinsip keamanan informasi, enkripsi, dan teknik perlindungan sistem dari ancaman cyber.</p>
+                        <div class="card-icon">📡</div>
+                        <h4>Pengantar Teknologi Informasi dan Telekomunikasi</h4>
+                        <p>Memahami konsep dasar teknologi informasi, sistem telekomunikasi, dan perkembangan teknologi digital terkini.</p>
                     </div>
                     <div class="card">
-                        <div class="card-icon">📱</div>
-                        <h4>Mobile Development</h4>
-                        <p>Mengembangkan aplikasi mobile untuk Android dan iOS menggunakan teknologi terkini.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🤖</div>
-                        <h4>Artificial Intelligence</h4>
-                        <p>Eksplorasi machine learning, deep learning, dan implementasi AI dalam berbagai aplikasi.</p>
+                        <div class="card-icon">🇮🇩</div>
+                        <h4>Pendidikan Pancasila</h4>
+                        <p>Mempelajari nilai-nilai Pancasila sebagai dasar negara dan mengimplementasikannya dalam kehidupan berbangsa dan bernegara.</p>
                     </div>
                 </div>
             </section>
@@ -396,6 +777,66 @@
     </footer>
 
     <script>
+        // Data anggota kelas dengan URL foto (opsional)
+        // Untuk menambahkan foto, ganti null dengan URL foto (misalnya dari hosting gambar)
+        const membersData = [
+            { name: "Aisyah Kirana Renaco", nim: "17250207", photo: null },
+            { name: "Adrian Tri Abrar", nim: "17250666", photo: null },
+            { name: "Arga Putra Fathoni", nim: "17250403", photo: null },
+            { name: "Afan Maulana Habibi", nim: "17250538", photo: null },
+            { name: "Aric Adira", nim: "17250423", photo: null },
+            { name: "Evangga Havid Suwarno", nim: "17250383", photo: null },
+            { name: "Fajar Anugrah Prasetyo", nim: "17250515", photo: null },
+            { name: "Muhamad Rizki Ramadhan", nim: "17250699", photo: null },
+            { name: "M Abdul Rojak Rizki", nim: "17250556", photo: null },
+            { name: "M Syabil Hafiz", nim: "17250076", photo: null },
+            { name: "Muhammad Raihan Athallah", nim: "17250435", photo: null },
+            { name: "Nabil", nim: "172500688", photo: null },
+            { name: "Nadine Deswiani", nim: "1725040392", photo: null },
+            { name: "Rofid Ardyawansyah", nim: "17250502", photo: null },
+            { name: "Saiful Abdullah Raubun", nim: "17250625", photo: null },
+            { name: "Syauqi Mujamil Ramadhan", nim: "17250550", photo: null },
+            
+        ];
+
+        // URL foto untuk Ketua dan Wakil Ketua (ganti null dengan URL foto jika ada)
+        const leaderPhotos = {
+            ketua: null,  // Contoh: 'https://example.com/photo-ketua.jpg'
+            wakil: null   // Contoh: 'https://example.com/photo-wakil.jpg'
+        };
+
+        // Set foto ketua dan wakil jika tersedia
+        function setLeaderPhoto(elementId, photoUrl, initials) {
+            const photoElement = document.getElementById(elementId);
+            if (photoUrl) {
+                photoElement.innerHTML = `<img src="${photoUrl}" alt="Foto">`;
+            } else {
+                photoElement.innerHTML = `<span class="placeholder-text">${initials}</span>`;
+                photoElement.classList.add('placeholder');
+            }
+        }
+
+        setLeaderPhoto('ketua-photo', leaderPhotos.ketua, 'MB');
+        setLeaderPhoto('wakil-photo', leaderPhotos.wakil, 'AR');
+
+        // Generate member cards
+        const membersContainer = document.getElementById('members-container');
+        membersData.forEach((member, index) => {
+            const initial = member.name.charAt(0).toUpperCase();
+            const photoContent = member.photo 
+                ? `<img src="${member.photo}" alt="${member.name}">`
+                : initial;
+            
+            const memberCard = `
+                <div class="member-card">
+                    <div class="member-photo">${photoContent}</div>
+                    <div class="member-name">${member.name}</div>
+                    <div class="member-nim">NIM: ${member.nim}</div>
+                </div>
+            `;
+            membersContainer.innerHTML += memberCard;
+        });
+
         // Smooth scrolling untuk navigasi
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -417,53 +858,48 @@
                 this.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
                 this.style.color = 'white';
                 const icon = this.querySelector('.card-icon');
+                const p = this.querySelector('p');
                 icon.style.background = 'white';
                 icon.style.color = '#667eea';
+                if (p) p.style.color = 'white';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
                 this.style.color = '#333';
                 const icon = this.querySelector('.card-icon');
+                const p = this.querySelector('p');
                 icon.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
                 icon.style.color = 'white';
+                if (p) p.style.color = '#666';
             });
         });
 
-        // Counter animation untuk statistik
-        const statNumbers = document.querySelectorAll('.stat-number');
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = entry.target;
-                    const text = target.textContent;
-                    if (text.includes('+')) {
-                        const num = parseInt(text);
-                        animateCount(target, 0, num, 2000);
-                    }
-                }
+        // Animasi leader card
+        const leaderCards = document.querySelectorAll('.leader-card');
+        leaderCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                this.style.color = 'white';
+                const bio = this.querySelector('.leader-bio');
+                const nim = this.querySelector('.leader-nim');
+                const name = this.querySelector('.leader-name');
+                if (bio) bio.style.color = 'rgba(255,255,255,0.9)';
+                if (nim) nim.style.color = 'rgba(255,255,255,0.8)';
+                if (name) name.style.color = 'white';
             });
-        }, observerOptions);
-
-        statNumbers.forEach(stat => observer.observe(stat));
-
-        function animateCount(element, start, end, duration) {
-            let current = start;
-            const increment = end / (duration / 16);
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= end) {
-                    element.textContent = end + '+';
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current) + '+';
-                }
-            }, 16);
-        }
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
+                this.style.color = '#333';
+                const bio = this.querySelector('.leader-bio');
+                const nim = this.querySelector('.leader-nim');
+                const name = this.querySelector('.leader-name');
+                if (bio) bio.style.color = '#555';
+                if (nim) nim.style.color = '#666';
+                if (name) name.style.color = '#333';
+            });
+        });
     </script>
 </body>
 </html>
