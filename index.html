@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             min-height: 100vh;
             color: #333;
         }
@@ -61,7 +61,7 @@
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -79,7 +79,10 @@
 
         .logo-text h1 {
             font-size: 24px;
-            color: #667eea;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .logo-text p {
@@ -101,7 +104,7 @@
         }
 
         nav a:hover {
-            color: #667eea;
+            color: #FF6B6B;
         }
 
         nav a::after {
@@ -111,7 +114,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #667eea;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
             transition: width 0.3s;
         }
 
@@ -261,8 +264,8 @@
         .btn {
             display: inline-block;
             padding: 15px 40px;
-            background: white;
-            color: #667eea;
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D);
+            color: white;
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
@@ -272,7 +275,7 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
         }
 
         .content {
@@ -288,7 +291,10 @@
 
         .section h3 {
             font-size: 32px;
-            color: #667eea;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #FFD93D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 30px;
             text-align: center;
             animation: fadeIn 1s ease;
@@ -303,13 +309,19 @@
         }
 
         .leader-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             animation: slideUp 0.6s ease;
+            color: white;
+        }
+
+        .leader-card:nth-child(2) {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3);
         }
 
         @keyframes slideUp {
@@ -324,8 +336,8 @@
         }
 
         .leader-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
 
         .leader-photo {
@@ -333,17 +345,21 @@
             height: 150px;
             border-radius: 50%;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #FF6B6B;
             font-size: 48px;
             font-weight: bold;
-            border: 5px solid white;
+            border: 5px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             overflow: hidden;
             position: relative;
+        }
+
+        .leader-card:nth-child(2) .leader-photo {
+            color: #4ECDC4;
         }
 
         .leader-photo img {
@@ -361,7 +377,7 @@
 
         .leader-role {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 20px;
             border-radius: 20px;
@@ -372,19 +388,19 @@
 
         .leader-name {
             font-size: 24px;
-            color: #333;
+            color: white;
             margin-bottom: 10px;
             font-weight: bold;
         }
 
         .leader-nim {
-            color: #666;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 16px;
             margin-bottom: 15px;
         }
 
         .leader-bio {
-            color: #555;
+            color: rgba(255, 255, 255, 0.95);
             line-height: 1.6;
             font-size: 14px;
         }
@@ -398,7 +414,6 @@
         }
 
         .member-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 30px 20px;
             border-radius: 15px;
             text-align: center;
@@ -407,6 +422,18 @@
             animation: fadeInScale 0.5s ease;
             animation-fill-mode: both;
         }
+
+        /* Colorful gradient backgrounds for each member */
+        .member-card:nth-child(10n+1) { background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
+        .member-card:nth-child(10n+2) { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
+        .member-card:nth-child(10n+3) { background: linear-gradient(135deg, #FFD93D, #F6C23E); }
+        .member-card:nth-child(10n+4) { background: linear-gradient(135deg, #A8E6CF, #7FCDBB); }
+        .member-card:nth-child(10n+5) { background: linear-gradient(135deg, #F093FB, #F5576C); }
+        .member-card:nth-child(10n+6) { background: linear-gradient(135deg, #4FACFE, #00F2FE); }
+        .member-card:nth-child(10n+7) { background: linear-gradient(135deg, #FA709A, #FEE140); }
+        .member-card:nth-child(10n+8) { background: linear-gradient(135deg, #30CFD0, #330867); }
+        .member-card:nth-child(10n+9) { background: linear-gradient(135deg, #A18CD1, #FBC2EB); }
+        .member-card:nth-child(10n+10) { background: linear-gradient(135deg, #FF9A9E, #FAD0C4); }
 
         @keyframes fadeInScale {
             from {
@@ -437,10 +464,8 @@
         .member-card:nth-child(16) { animation-delay: 0.85s; }
 
         .member-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
         .member-photo {
@@ -448,14 +473,14 @@
             height: 100px;
             border-radius: 50%;
             margin: 0 auto 15px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #FF6B6B;
             font-size: 36px;
             font-weight: bold;
-            border: 4px solid white;
+            border: 4px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             overflow: hidden;
             position: relative;
@@ -473,23 +498,14 @@
         .member-name {
             font-size: 18px;
             font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-            transition: color 0.3s;
-        }
-
-        .member-card:hover .member-name {
             color: white;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         .member-nim {
             font-size: 14px;
-            color: #666;
-            transition: color 0.3s;
-        }
-
-        .member-card:hover .member-nim {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .cards {
@@ -500,23 +516,30 @@
         }
 
         .card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            color: white;
         }
 
+        .card:nth-child(1) { background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
+        .card:nth-child(2) { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
+        .card:nth-child(3) { background: linear-gradient(135deg, #FFD93D, #F6C23E); }
+        .card:nth-child(4) { background: linear-gradient(135deg, #A8E6CF, #7FCDBB); }
+        .card:nth-child(5) { background: linear-gradient(135deg, #F093FB, #F5576C); }
+        .card:nth-child(6) { background: linear-gradient(135deg, #4FACFE, #00F2FE); }
+
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         .card-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -524,25 +547,27 @@
             color: white;
             font-size: 28px;
             margin-bottom: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .card h4 {
             font-size: 22px;
             margin-bottom: 15px;
-            color: #333;
+            color: white;
         }
 
         .card p {
-            color: #666;
+            color: rgba(255, 255, 255, 0.95);
             line-height: 1.6;
         }
 
         .about-class {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
             color: white;
             padding: 40px;
             border-radius: 20px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.3);
         }
 
         .about-class h4 {
@@ -577,7 +602,7 @@
         }
 
         footer {
-            background: #2d3748;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
             color: white;
             text-align: center;
             padding: 30px 20px;
@@ -796,7 +821,6 @@
             { name: "Rofid Ardyawansyah", nim: "17250502", photo: null },
             { name: "Saiful Abdullah Raubun", nim: "17250625", photo: null },
             { name: "Syauqi Mujamil Ramadhan", nim: "17250550", photo: null },
-            
         ];
 
         // URL foto untuk Ketua dan Wakil Ketua (ganti null dengan URL foto jika ada)
@@ -848,56 +872,6 @@
                         block: 'start'
                     });
                 }
-            });
-        });
-
-        // Animasi card saat di-hover
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                this.style.color = 'white';
-                const icon = this.querySelector('.card-icon');
-                const p = this.querySelector('p');
-                icon.style.background = 'white';
-                icon.style.color = '#667eea';
-                if (p) p.style.color = 'white';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
-                this.style.color = '#333';
-                const icon = this.querySelector('.card-icon');
-                const p = this.querySelector('p');
-                icon.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
-                icon.style.color = 'white';
-                if (p) p.style.color = '#666';
-            });
-        });
-
-        // Animasi leader card
-        const leaderCards = document.querySelectorAll('.leader-card');
-        leaderCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                this.style.color = 'white';
-                const bio = this.querySelector('.leader-bio');
-                const nim = this.querySelector('.leader-nim');
-                const name = this.querySelector('.leader-name');
-                if (bio) bio.style.color = 'rgba(255,255,255,0.9)';
-                if (nim) nim.style.color = 'rgba(255,255,255,0.8)';
-                if (name) name.style.color = 'white';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.background = 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)';
-                this.style.color = '#333';
-                const bio = this.querySelector('.leader-bio');
-                const nim = this.querySelector('.leader-nim');
-                const name = this.querySelector('.leader-name');
-                if (bio) bio.style.color = '#555';
-                if (nim) nim.style.color = '#666';
-                if (name) name.style.color = '#333';
             });
         });
     </script>
