@@ -90,6 +90,36 @@
             color: #666;
         }
 
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: #333;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         nav {
             display: flex;
             gap: 30px;
@@ -101,6 +131,7 @@
             font-weight: 500;
             transition: color 0.3s;
             position: relative;
+            white-space: nowrap;
         }
 
         nav a:hover {
@@ -131,7 +162,6 @@
             overflow: hidden;
         }
 
-        /* Animated Background Icons */
         .tech-icons {
             position: absolute;
             top: 0;
@@ -150,75 +180,16 @@
             animation: float 20s infinite ease-in-out;
         }
 
-        .tech-icon:nth-child(1) {
-            left: 10%;
-            top: 20%;
-            animation-delay: 0s;
-            animation-duration: 25s;
-        }
-
-        .tech-icon:nth-child(2) {
-            left: 20%;
-            top: 60%;
-            animation-delay: 2s;
-            animation-duration: 30s;
-        }
-
-        .tech-icon:nth-child(3) {
-            left: 70%;
-            top: 30%;
-            animation-delay: 4s;
-            animation-duration: 28s;
-        }
-
-        .tech-icon:nth-child(4) {
-            left: 80%;
-            top: 70%;
-            animation-delay: 6s;
-            animation-duration: 32s;
-        }
-
-        .tech-icon:nth-child(5) {
-            left: 50%;
-            top: 40%;
-            animation-delay: 8s;
-            animation-duration: 26s;
-        }
-
-        .tech-icon:nth-child(6) {
-            left: 30%;
-            top: 80%;
-            animation-delay: 3s;
-            animation-duration: 29s;
-        }
-
-        .tech-icon:nth-child(7) {
-            left: 60%;
-            top: 15%;
-            animation-delay: 5s;
-            animation-duration: 27s;
-        }
-
-        .tech-icon:nth-child(8) {
-            left: 85%;
-            top: 45%;
-            animation-delay: 7s;
-            animation-duration: 31s;
-        }
-
-        .tech-icon:nth-child(9) {
-            left: 15%;
-            top: 50%;
-            animation-delay: 1s;
-            animation-duration: 24s;
-        }
-
-        .tech-icon:nth-child(10) {
-            left: 45%;
-            top: 75%;
-            animation-delay: 9s;
-            animation-duration: 33s;
-        }
+        .tech-icon:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 25s; }
+        .tech-icon:nth-child(2) { left: 20%; top: 60%; animation-delay: 2s; animation-duration: 30s; }
+        .tech-icon:nth-child(3) { left: 70%; top: 30%; animation-delay: 4s; animation-duration: 28s; }
+        .tech-icon:nth-child(4) { left: 80%; top: 70%; animation-delay: 6s; animation-duration: 32s; }
+        .tech-icon:nth-child(5) { left: 50%; top: 40%; animation-delay: 8s; animation-duration: 26s; }
+        .tech-icon:nth-child(6) { left: 30%; top: 80%; animation-delay: 3s; animation-duration: 29s; }
+        .tech-icon:nth-child(7) { left: 60%; top: 15%; animation-delay: 5s; animation-duration: 27s; }
+        .tech-icon:nth-child(8) { left: 85%; top: 45%; animation-delay: 7s; animation-duration: 31s; }
+        .tech-icon:nth-child(9) { left: 15%; top: 50%; animation-delay: 1s; animation-duration: 24s; }
+        .tech-icon:nth-child(10) { left: 45%; top: 75%; animation-delay: 9s; animation-duration: 33s; }
 
         @keyframes float {
             0%, 100% {
@@ -298,6 +269,133 @@
             margin-bottom: 30px;
             text-align: center;
             animation: fadeIn 1s ease;
+        }
+
+        /* Schedule Section */
+        .schedule-container {
+            margin-top: 40px;
+        }
+
+        .schedule-day {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .schedule-day:nth-child(1) { border-left-color: #FF6B6B; animation-delay: 0.1s; }
+        .schedule-day:nth-child(2) { border-left-color: #4ECDC4; animation-delay: 0.2s; }
+        .schedule-day:nth-child(3) { border-left-color: #FFD93D; animation-delay: 0.3s; }
+        .schedule-day:nth-child(4) { border-left-color: #A8E6CF; animation-delay: 0.4s; }
+        .schedule-day:nth-child(5) { border-left-color: #F093FB; animation-delay: 0.5s; }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .day-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .schedule-day:nth-child(1) .day-icon { background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
+        .schedule-day:nth-child(2) .day-icon { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
+        .schedule-day:nth-child(3) .day-icon { background: linear-gradient(135deg, #FFD93D, #F6C23E); }
+        .schedule-day:nth-child(4) .day-icon { background: linear-gradient(135deg, #A8E6CF, #7FCDBB); }
+        .schedule-day:nth-child(5) .day-icon { background: linear-gradient(135deg, #F093FB, #F5576C); }
+
+        .day-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: start;
+            gap: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .course-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .course-time {
+            font-weight: bold;
+            color: #666;
+            min-width: 120px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .course-time::before {
+            content: '🕐';
+            font-size: 20px;
+        }
+
+        .course-details {
+            flex: 1;
+        }
+
+        .course-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .course-lecturer {
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .course-lecturer::before {
+            content: '👨‍🏫';
+        }
+
+        .no-class {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-style: italic;
+            font-size: 18px;
         }
 
         /* Leadership Section */
@@ -423,7 +521,6 @@
             animation-fill-mode: both;
         }
 
-        /* Colorful gradient backgrounds for each member */
         .member-card:nth-child(10n+1) { background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
         .member-card:nth-child(10n+2) { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
         .member-card:nth-child(10n+3) { background: linear-gradient(135deg, #FFD93D, #F6C23E); }
@@ -608,16 +705,41 @@
             padding: 30px 20px;
         }
 
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
+            .menu-toggle {
+                display: flex;
             }
 
             nav {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
                 flex-direction: column;
-                gap: 15px;
+                gap: 0;
+                padding: 20px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                border-radius: 0 0 20px 20px;
+                max-height: calc(100vh - 90px);
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav a {
+                padding: 15px 20px;
+                border-bottom: 1px solid #f0f0f0;
                 text-align: center;
+                font-size: 18px;
+            }
+
+            nav a:last-child {
+                border-bottom: none;
             }
 
             .hero h2 {
@@ -628,16 +750,87 @@
                 font-size: 16px;
             }
 
+            .hero {
+                padding: 60px 20px;
+            }
+
             .leadership {
                 grid-template-columns: 1fr;
             }
 
             .members-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
             }
 
             .tech-icon {
                 font-size: 30px;
+            }
+
+            .section h3 {
+                font-size: 26px;
+            }
+
+            .content {
+                padding: 40px 15px;
+            }
+
+            .course-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .course-time {
+                min-width: auto;
+            }
+
+            .schedule-day {
+                padding: 20px 15px;
+            }
+
+            .day-name {
+                font-size: 20px;
+            }
+
+            .course-name {
+                font-size: 16px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 20px;
+            }
+
+            .logo-text p {
+                font-size: 12px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -653,8 +846,14 @@
                         <p>Kelas 17.1A.06</p>
                     </div>
                 </div>
-                <nav>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="mainNav">
                     <a href="#beranda">Beranda</a>
+                    <a href="#jadwal">Jadwal</a>
                     <a href="#pengurus">Pengurus</a>
                     <a href="#anggota">Anggota</a>
                     <a href="#tentang">Tentang</a>
@@ -666,7 +865,6 @@
     </header>
 
     <section class="hero" id="beranda">
-        <!-- Animated Tech Icons Background -->
         <div class="tech-icons">
             <div class="tech-icon">💻</div>
             <div class="tech-icon">🖥️</div>
@@ -683,12 +881,100 @@
         <div class="container hero-content">
             <h2>Teknologi Informasi</h2>
             <p>Universitas Bina Sarana Informatika - Kelas 17.1A.06</p>
-            <a href="#pengurus" class="btn">Pelajari Lebih Lanjut</a>
+            <a href="#jadwal" class="btn">Lihat Jadwal</a>
         </div>
     </section>
 
     <div class="content">
         <div class="container">
+            <!-- Schedule Section -->
+            <section class="section" id="jadwal">
+                <h3>Jadwal Kuliah</h3>
+                <div class="schedule-container">
+                    <!-- Senin -->
+                    <div class="schedule-day">
+                        <div class="day-header">
+                            <div class="day-icon">📅</div>
+                            <div class="day-name">Senin</div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-time">10:50 - 14:10</div>
+                            <div class="course-details">
+                                <div class="course-name">Logika & Algoritma</div>
+                                <div class="course-lecturer">Dosen: Pak Yopi</div>
+                            </div>
+                        </div>
+                       
+
+                    <!-- Selasa -->
+                    <div class="schedule-day">
+                        <div class="day-header">
+                            <div class="day-icon">📅</div>
+                            <div class="day-name">Selasa</div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-time">10:50 - 14:10</div>
+                            <div class="course-details">
+                                <div class="course-name">Dasar Pemograman</div>
+                                <div class="course-lecturer">Dosen: Mr.Lase</div>
+                            </div>
+                        </div>
+                       
+
+                    <!-- Rabu -->
+                    <div class="schedule-day">
+                        <div class="day-header">
+                            <div class="day-icon">📅</div>
+                            <div class="day-name">Rabu</div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-time">10:00 - 12:30</div>
+                            <div class="course-details">
+                                <div class="course-name">Entrepreneurship</div>
+                                <div class="course-lecturer">Dosen: Pak Irwin</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kamis -->
+                    <div class="schedule-day">
+                        <div class="day-header">
+                            <div class="day-icon">📅</div>
+                            <div class="day-name">Kamis</div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-time">10:00 - 11:40</div>
+                            <div class="course-details">
+                                <div class="course-name">Bahasa Inggris</div>
+                                <div class="course-lecturer">Dosen: Mis Suwantica [Tica]</div>
+                            </div>
+                        </div>
+                        
+
+                    <!-- Jumat -->
+                    <div class="schedule-day">
+                        <div class="day-header">
+                            <div class="day-icon">📅</div>
+                            <div class="day-name">Jumaat</div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-time">07:30 - 10:00</div>
+                            <div class="course-details">
+                                <div class="course-name">Pengantar Teknologi Informasi Dan Komunikasi</div>
+                                <div class="course-lecturer">Dosen: Bu Ade Fitria [Fitria]</div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="course-item">
+                            <div class="course-time">10:00 - 11:40</div>
+                            <div class="course-details">
+                                <div class="course-name">Pendidikan Pancasila</div>
+                                <div class="course-lecturer">Dosen: Pak Syamsudin</div>
+                            </div>
+                        </div>
+            </section>
+
             <!-- Leadership Section -->
             <section class="section" id="pengurus">
                 <h3>Pengurus Kelas</h3>
@@ -802,8 +1088,36 @@
     </footer>
 
     <script>
-        // Data anggota kelas dengan URL foto (opsional)
-        // Untuk menambahkan foto, ganti null dengan URL foto (misalnya dari hosting gambar)
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = mainNav.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+            }
+        });
+
+        // Data anggota kelas
         const membersData = [
             { name: "Aisyah Kirana Renaco", nim: "17250207", photo: null },
             { name: "Adrian Tri Abrar", nim: "17250666", photo: null },
@@ -823,13 +1137,13 @@
             { name: "Syauqi Mujamil Ramadhan", nim: "17250550", photo: null },
         ];
 
-        // URL foto untuk Ketua dan Wakil Ketua (ganti null dengan URL foto jika ada)
+        // URL foto untuk Ketua dan Wakil Ketua
         const leaderPhotos = {
-            ketua: null,  // Contoh: 'https://example.com/photo-ketua.jpg'
-            wakil: null   // Contoh: 'https://example.com/photo-wakil.jpg'
+            ketua: null,
+            wakil: null
         };
 
-        // Set foto ketua dan wakil jika tersedia
+        // Set foto ketua dan wakil
         function setLeaderPhoto(elementId, photoUrl, initials) {
             const photoElement = document.getElementById(elementId);
             if (photoUrl) {
@@ -861,7 +1175,7 @@
             membersContainer.innerHTML += memberCard;
         });
 
-        // Smooth scrolling untuk navigasi
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
