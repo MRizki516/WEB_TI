@@ -11,33 +11,57 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
-            color: #333;
+        :root {
+            --black: #000000;
+            --dark-gray: #2d2d2d;
+            --gray: #6b7280;
+            --light-gray: #e5e7eb;
+            --silver: #c0c0c0;
+            --light-silver: #f5f5f5;
+            --white: #ffffff;
         }
 
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--light-silver);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Header */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
-            animation: slideDown 0.5s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            animation: slideInLeft 0.6s ease;
         }
 
         .container {
@@ -50,66 +74,61 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 16px 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            animation: scaleIn 0.6s ease;
         }
 
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
-            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            background: var(--black);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            animation: pulse 2s infinite;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .logo-icon:hover {
+            animation: pulse 0.6s ease;
         }
 
         .logo-text h1 {
-            font-size: 24px;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 20px;
+            color: var(--black);
         }
 
         .logo-text p {
-            font-size: 14px;
-            color: #666;
+            font-size: 13px;
+            color: var(--gray);
         }
 
-        /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             cursor: pointer;
             padding: 8px;
         }
 
         .menu-toggle span {
-            display: block;
-            width: 28px;
-            height: 3px;
-            background: #333;
-            border-radius: 3px;
-            transition: all 0.3s ease;
+            width: 24px;
+            height: 2px;
+            background: var(--black);
+            transition: all 0.3s;
         }
 
         .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+            transform: rotate(45deg) translate(6px, 6px);
         }
 
         .menu-toggle.active span:nth-child(2) {
@@ -117,25 +136,21 @@
         }
 
         .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
         nav {
             display: flex;
-            gap: 30px;
+            gap: 32px;
         }
 
         nav a {
             text-decoration: none;
-            color: #333;
+            color: var(--dark-gray);
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 14px;
+            transition: all 0.3s;
             position: relative;
-            white-space: nowrap;
-        }
-
-        nav a:hover {
-            color: #FF6B6B;
         }
 
         nav a::after {
@@ -145,564 +160,635 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+            background: var(--black);
             transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--black);
         }
 
         nav a:hover::after {
             width: 100%;
         }
 
+        /* Hero */
         .hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            color: var(--white);
+            padding: 100px 20px;
             text-align: center;
-            padding: 80px 20px;
-            color: white;
-            animation: fadeIn 1s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .tech-icons {
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
+            top: -50%;
+            right: -50%;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            opacity: 0.15;
-        }
-
-        .tech-icon {
-            position: absolute;
-            font-size: 40px;
-            color: white;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .tech-icon:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 25s; }
-        .tech-icon:nth-child(2) { left: 20%; top: 60%; animation-delay: 2s; animation-duration: 30s; }
-        .tech-icon:nth-child(3) { left: 70%; top: 30%; animation-delay: 4s; animation-duration: 28s; }
-        .tech-icon:nth-child(4) { left: 80%; top: 70%; animation-delay: 6s; animation-duration: 32s; }
-        .tech-icon:nth-child(5) { left: 50%; top: 40%; animation-delay: 8s; animation-duration: 26s; }
-        .tech-icon:nth-child(6) { left: 30%; top: 80%; animation-delay: 3s; animation-duration: 29s; }
-        .tech-icon:nth-child(7) { left: 60%; top: 15%; animation-delay: 5s; animation-duration: 27s; }
-        .tech-icon:nth-child(8) { left: 85%; top: 45%; animation-delay: 7s; animation-duration: 31s; }
-        .tech-icon:nth-child(9) { left: 15%; top: 50%; animation-delay: 1s; animation-duration: 24s; }
-        .tech-icon:nth-child(10) { left: 45%; top: 75%; animation-delay: 9s; animation-duration: 33s; }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-                opacity: 0.1;
-            }
-            25% {
-                transform: translateY(-20px) translateX(10px) rotate(5deg);
-                opacity: 0.15;
-            }
-            50% {
-                transform: translateY(-10px) translateX(-10px) rotate(-5deg);
-                opacity: 0.2;
-            }
-            75% {
-                transform: translateY(-30px) translateX(5px) rotate(3deg);
-                opacity: 0.15;
-            }
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s infinite;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            z-index: 2;
+            animation: fadeIn 1s ease;
         }
 
         .hero h2 {
             font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 16px;
+            font-weight: 700;
+            animation: slideInLeft 0.8s ease;
         }
 
         .hero p {
             font-size: 20px;
             opacity: 0.95;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
+            animation: slideInRight 0.8s ease;
         }
 
         .btn {
             display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #FF6B6B, #FFD93D);
-            color: white;
+            padding: 14px 36px;
+            background: var(--white);
+            color: var(--black);
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
+            border-radius: 8px;
+            font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: scaleIn 1s ease;
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
+        /* Content */
         .content {
-            background: white;
-            border-radius: 30px 30px 0 0;
-            padding: 60px 20px;
-            margin-top: 40px;
+            padding: 80px 20px;
+            background: var(--light-silver);
         }
 
         .section {
-            margin-bottom: 60px;
+            margin-bottom: 100px;
+            animation: fadeIn 0.8s ease;
         }
 
-        .section h3 {
-            font-size: 32px;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #FFD93D);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 30px;
+        .section-title {
+            font-size: 36px;
+            color: var(--black);
+            margin-bottom: 50px;
             text-align: center;
-            animation: fadeIn 1s ease;
+            font-weight: 700;
+            position: relative;
+            animation: fadeIn 0.8s ease;
         }
 
-        /* Schedule Section */
-        .schedule-container {
-            margin-top: 40px;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--black);
         }
 
+        /* Schedule */
         .schedule-day {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-left: 5px solid;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--black);
+            transition: all 0.3s ease;
             animation: slideInLeft 0.6s ease;
         }
 
-        .schedule-day:nth-child(1) { border-left-color: #FF6B6B; animation-delay: 0.1s; }
-        .schedule-day:nth-child(2) { border-left-color: #4ECDC4; animation-delay: 0.2s; }
-        .schedule-day:nth-child(3) { border-left-color: #FFD93D; animation-delay: 0.3s; }
-        .schedule-day:nth-child(4) { border-left-color: #A8E6CF; animation-delay: 0.4s; }
-        .schedule-day:nth-child(5) { border-left-color: #F093FB; animation-delay: 0.5s; }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .schedule-day:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            background: var(--light-silver);
         }
-
-        .day-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .day-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .schedule-day:nth-child(1) .day-icon { background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
-        .schedule-day:nth-child(2) .day-icon { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
-        .schedule-day:nth-child(3) .day-icon { background: linear-gradient(135deg, #FFD93D, #F6C23E); }
-        .schedule-day:nth-child(4) .day-icon { background: linear-gradient(135deg, #A8E6CF, #7FCDBB); }
-        .schedule-day:nth-child(5) .day-icon { background: linear-gradient(135deg, #F093FB, #F5576C); }
 
         .day-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 20px;
         }
 
         .course-item {
-            display: flex;
-            align-items: start;
-            gap: 20px;
-            padding: 20px;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
+            padding: 18px;
+            background: var(--light-silver);
+            border-radius: 8px;
+            margin-bottom: 12px;
             transition: all 0.3s ease;
+            border: 1px solid var(--silver);
         }
 
         .course-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: var(--dark-gray);
+            color: var(--white);
+            transform: scale(1.02);
+            border-color: var(--dark-gray);
+        }
+
+        .course-item:last-child {
+            margin-bottom: 0;
         }
 
         .course-time {
-            font-weight: bold;
-            color: #666;
-            min-width: 120px;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-weight: 700;
+            color: var(--black);
+            font-size: 15px;
+            margin-bottom: 8px;
         }
 
-        .course-time::before {
-            content: '🕐';
-            font-size: 20px;
-        }
-
-        .course-details {
-            flex: 1;
+        .course-item:hover .course-time {
+            color: var(--white);
         }
 
         .course-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 6px;
+        }
+
+        .course-item:hover .course-name {
+            color: var(--white);
         }
 
         .course-lecturer {
             font-size: 14px;
-            color: #666;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            color: var(--gray);
         }
 
-        .course-lecturer::before {
-            content: '👨‍🏫';
+        .course-item:hover .course-lecturer {
+            color: var(--light-gray);
         }
 
-        .no-class {
-            text-align: center;
-            padding: 30px;
-            color: #999;
-            font-style: italic;
-            font-size: 18px;
-        }
-
-        /* Leadership Section */
+        /* Leadership */
         .leadership {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            margin-top: 40px;
         }
 
         .leader-card {
-            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            background: var(--white);
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: slideUp 0.6s ease;
-            color: white;
-        }
-
-        .leader-card:nth-child(2) {
-            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
-            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3);
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            transition: all 0.4s ease;
+            animation: scaleIn 0.6s ease;
+            border: 2px solid var(--silver);
         }
 
         .leader-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+            background: var(--light-silver);
         }
 
         .leader-photo {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            margin: 0 auto 20px;
-            background: white;
+            margin: 0 auto 24px;
+            background: var(--silver);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #FF6B6B;
-            font-size: 48px;
-            font-weight: bold;
-            border: 5px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--white);
+            border: 4px solid var(--black);
             overflow: hidden;
-            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .leader-card:nth-child(2) .leader-photo {
-            color: #4ECDC4;
+        .leader-card:hover .leader-photo {
+            animation: pulse 0.6s ease;
         }
 
         .leader-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .leader-photo.placeholder {
-            font-size: 60px;
         }
 
         .leader-role {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.3);
-            color: white;
+            background: var(--black);
+            color: var(--white);
             padding: 8px 20px;
             border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
         }
 
         .leader-name {
-            font-size: 24px;
-            color: white;
-            margin-bottom: 10px;
-            font-weight: bold;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 6px;
         }
 
         .leader-nim {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 16px;
-            margin-bottom: 15px;
+            color: var(--gray);
+            font-size: 15px;
+            margin-bottom: 20px;
         }
 
         .leader-bio {
-            color: rgba(255, 255, 255, 0.95);
-            line-height: 1.6;
-            font-size: 14px;
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.7;
         }
 
-        /* Members Section */
+        /* Members */
         .members-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
         }
 
         .member-card {
-            padding: 30px 20px;
-            border-radius: 15px;
+            background: var(--white);
+            padding: 28px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            animation: fadeInScale 0.5s ease;
+            border: 2px solid var(--silver);
+            animation: fadeIn 0.6s ease;
             animation-fill-mode: both;
         }
 
-        .member-card:nth-child(10n+1) { background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
-        .member-card:nth-child(10n+2) { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
-        .member-card:nth-child(10n+3) { background: linear-gradient(135deg, #FFD93D, #F6C23E); }
-        .member-card:nth-child(10n+4) { background: linear-gradient(135deg, #A8E6CF, #7FCDBB); }
-        .member-card:nth-child(10n+5) { background: linear-gradient(135deg, #F093FB, #F5576C); }
-        .member-card:nth-child(10n+6) { background: linear-gradient(135deg, #4FACFE, #00F2FE); }
-        .member-card:nth-child(10n+7) { background: linear-gradient(135deg, #FA709A, #FEE140); }
-        .member-card:nth-child(10n+8) { background: linear-gradient(135deg, #30CFD0, #330867); }
-        .member-card:nth-child(10n+9) { background: linear-gradient(135deg, #A18CD1, #FBC2EB); }
-        .member-card:nth-child(10n+10) { background: linear-gradient(135deg, #FF9A9E, #FAD0C4); }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .member-card:nth-child(1) { animation-delay: 0.1s; }
-        .member-card:nth-child(2) { animation-delay: 0.15s; }
-        .member-card:nth-child(3) { animation-delay: 0.2s; }
-        .member-card:nth-child(4) { animation-delay: 0.25s; }
-        .member-card:nth-child(5) { animation-delay: 0.3s; }
-        .member-card:nth-child(6) { animation-delay: 0.35s; }
-        .member-card:nth-child(7) { animation-delay: 0.4s; }
-        .member-card:nth-child(8) { animation-delay: 0.45s; }
-        .member-card:nth-child(9) { animation-delay: 0.5s; }
-        .member-card:nth-child(10) { animation-delay: 0.55s; }
-        .member-card:nth-child(11) { animation-delay: 0.6s; }
-        .member-card:nth-child(12) { animation-delay: 0.65s; }
-        .member-card:nth-child(13) { animation-delay: 0.7s; }
-        .member-card:nth-child(14) { animation-delay: 0.75s; }
-        .member-card:nth-child(15) { animation-delay: 0.8s; }
-        .member-card:nth-child(16) { animation-delay: 0.85s; }
-
         .member-card:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+            background: var(--light-silver);
         }
 
         .member-photo {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            margin: 0 auto 15px;
-            background: white;
+            margin: 0 auto 16px;
+            background: var(--silver);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #FF6B6B;
-            font-size: 36px;
-            font-weight: bold;
-            border: 4px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--white);
+            border: 3px solid var(--dark-gray);
             overflow: hidden;
-            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover .member-photo {
+            transform: rotate(360deg);
         }
 
         .member-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
         }
 
         .member-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 8px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 6px;
         }
 
         .member-nim {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            color: var(--gray);
         }
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .card {
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            color: white;
-        }
-
-        .card:nth-child(1) { background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
-        .card:nth-child(2) { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
-        .card:nth-child(3) { background: linear-gradient(135deg, #FFD93D, #F6C23E); }
-        .card:nth-child(4) { background: linear-gradient(135deg, #A8E6CF, #7FCDBB); }
-        .card:nth-child(5) { background: linear-gradient(135deg, #F093FB, #F5576C); }
-        .card:nth-child(6) { background: linear-gradient(135deg, #4FACFE, #00F2FE); }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .card h4 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: white;
-        }
-
-        .card p {
-            color: rgba(255, 255, 255, 0.95);
-            line-height: 1.6;
-        }
-
-        .about-class {
-            background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
+        /* About */
+        .about-box {
+            background: var(--black);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
-            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.3);
+            animation: scaleIn 0.8s ease;
         }
 
-        .about-class h4 {
+        .about-box h4 {
             font-size: 28px;
             margin-bottom: 20px;
+        }
+
+        .about-box p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-size: 16px;
         }
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 30px;
-            margin-top: 30px;
         }
 
         .stat-item {
-            background: rgba(255,255,255,0.2);
             padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .stat-item:hover {
+            background: var(--white);
+            border-color: var(--white);
+            transform: scale(1.05);
         }
 
         .stat-number {
-            font-size: 48px;
-            font-weight: bold;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--white);
             display: block;
             margin-bottom: 10px;
         }
 
-        .stat-label {
-            font-size: 16px;
-            opacity: 0.9;
+        .stat-item:hover .stat-number {
+            color: var(--black);
         }
 
-        footer {
-            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-            color: white;
+        .stat-label {
+            font-size: 15px;
+            color: var(--light-gray);
+        }
+
+        .stat-item:hover .stat-label {
+            color: var(--gray);
+        }
+
+        /* Courses */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: var(--white);
+            padding: 36px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid var(--silver);
+            animation: fadeIn 0.6s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+            background: var(--light-silver);
+        }
+
+        .course-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--dark-gray);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover .course-icon {
+            animation: pulse 0.6s ease;
+            background: var(--black);
+        }
+
+        .course-card h4 {
+            font-size: 20px;
+            color: var(--black);
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .course-card p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Gallery/Memories */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-item {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid var(--silver);
+            animation: scaleIn 0.6s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 220px;
+            background: var(--silver);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 48px;
+            overflow: hidden;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            padding: 20px;
+        }
+
+        .gallery-caption h5 {
+            font-size: 17px;
+            color: var(--black);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .gallery-caption p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .upload-box {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            border: 2px solid var(--silver);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .upload-box h4 {
+            font-size: 24px;
+            color: var(--black);
+            margin-bottom: 30px;
             text-align: center;
-            padding: 30px 20px;
+            font-weight: 700;
+        }
+
+        .upload-area {
+            border: 3px dashed var(--silver);
+            border-radius: 12px;
+            padding: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: var(--light-silver);
+        }
+
+        .upload-area:hover {
+            border-color: var(--dark-gray);
+            background: var(--white);
+            transform: scale(1.02);
+        }
+
+        .upload-area input[type="file"] {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 56px;
+            margin-bottom: 16px;
+            animation: pulse 2s infinite;
+        }
+
+        .upload-text {
+            color: var(--gray);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-upload {
+            margin-top: 24px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 14px 36px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-upload:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-upload:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.9;
+            font-size: 15px;
+            margin-bottom: 10px;
         }
 
         /* Mobile Responsive */
@@ -713,18 +799,15 @@
 
             nav {
                 position: fixed;
-                top: 90px;
+                top: 72px;
                 left: -100%;
                 width: 100%;
-                background: rgba(255, 255, 255, 0.98);
+                background: var(--white);
                 flex-direction: column;
                 gap: 0;
                 padding: 20px;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-                transition: left 0.3s ease;
-                border-radius: 0 0 20px 20px;
-                max-height: calc(100vh - 90px);
-                overflow-y: auto;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s;
             }
 
             nav.active {
@@ -732,105 +815,60 @@
             }
 
             nav a {
-                padding: 15px 20px;
-                border-bottom: 1px solid #f0f0f0;
-                text-align: center;
-                font-size: 18px;
+                padding: 14px 0;
+                border-bottom: 1px solid var(--light-gray);
             }
 
             nav a:last-child {
                 border-bottom: none;
             }
 
+            .hero {
+                padding: 80px 20px;
+            }
+
             .hero h2 {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .hero p {
-                font-size: 16px;
+                font-size: 18px;
             }
 
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .leadership {
-                grid-template-columns: 1fr;
-            }
-
-            .members-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 20px;
-            }
-
-            .tech-icon {
+            .section-title {
                 font-size: 30px;
             }
 
-            .section h3 {
-                font-size: 26px;
-            }
-
             .content {
-                padding: 40px 15px;
+                padding: 60px 15px;
             }
 
-            .course-item {
-                flex-direction: column;
-                gap: 10px;
+            .members-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 20px;
             }
 
-            .course-time {
-                min-width: auto;
-            }
-
-            .schedule-day {
-                padding: 20px 15px;
-            }
-
-            .day-name {
-                font-size: 20px;
-            }
-
-            .course-name {
-                font-size: 16px;
-            }
-
-            .cards {
+            .courses-grid {
                 grid-template-columns: 1fr;
             }
 
-            .stats {
+            .gallery-container {
                 grid-template-columns: 1fr;
+            }
+
+            .about-box,
+            .upload-box {
+                padding: 30px;
             }
         }
 
         @media (max-width: 480px) {
-            .logo-text h1 {
-                font-size: 20px;
-            }
-
-            .logo-text p {
-                font-size: 12px;
-            }
-
-            .logo-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
             .hero h2 {
-                font-size: 28px;
+                font-size: 32px;
             }
 
-            .btn {
-                padding: 12px 30px;
-                font-size: 14px;
-            }
-
-            .members-grid {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 26px;
             }
         }
     </style>
@@ -856,28 +894,15 @@
                     <a href="#jadwal">Jadwal</a>
                     <a href="#pengurus">Pengurus</a>
                     <a href="#anggota">Anggota</a>
+                    <a href="#kenangan">Kenangan</a>
                     <a href="#tentang">Tentang</a>
                     <a href="#materi">Mata Kuliah</a>
-                    <a href="#kontak">Kontak</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <section class="hero" id="beranda">
-        <div class="tech-icons">
-            <div class="tech-icon">💻</div>
-            <div class="tech-icon">🖥️</div>
-            <div class="tech-icon">📱</div>
-            <div class="tech-icon">⚙️</div>
-            <div class="tech-icon">🌐</div>
-            <div class="tech-icon">🔒</div>
-            <div class="tech-icon">☁️</div>
-            <div class="tech-icon">🚀</div>
-            <div class="tech-icon">💡</div>
-            <div class="tech-icon">🔧</div>
-        </div>
-        
         <div class="container hero-content">
             <h2>Teknologi Informasi</h2>
             <p>Universitas Bina Sarana Informatika - Kelas 17.1A.06</p>
@@ -889,99 +914,65 @@
         <div class="container">
             <!-- Schedule Section -->
             <section class="section" id="jadwal">
-                <h3>Jadwal Kuliah</h3>
-                <div class="schedule-container">
-                    <!-- Senin -->
-                    <div class="schedule-day">
-                        <div class="day-header">
-                            <div class="day-icon">📅</div>
-                            <div class="day-name">Senin</div>
-                        </div>
-                        <div class="course-item">
-                            <div class="course-time">10:50 - 14:10</div>
-                            <div class="course-details">
-                                <div class="course-name">Logika & Algoritma</div>
-                                <div class="course-lecturer">Dosen: Pak Yopi</div>
-                            </div>
-                        </div>
-                       
-
-                    <!-- Selasa -->
-                    <div class="schedule-day">
-                        <div class="day-header">
-                            <div class="day-icon">📅</div>
-                            <div class="day-name">Selasa</div>
-                        </div>
-                        <div class="course-item">
-                            <div class="course-time">10:50 - 14:10</div>
-                            <div class="course-details">
-                                <div class="course-name">Dasar Pemograman</div>
-                                <div class="course-lecturer">Dosen: Mr.Lase</div>
-                            </div>
-                        </div>
-                       
-
-                    <!-- Rabu -->
-                    <div class="schedule-day">
-                        <div class="day-header">
-                            <div class="day-icon">📅</div>
-                            <div class="day-name">Rabu</div>
-                        </div>
-                        <div class="course-item">
-                            <div class="course-time">10:00 - 12:30</div>
-                            <div class="course-details">
-                                <div class="course-name">Entrepreneurship</div>
-                                <div class="course-lecturer">Dosen: Pak Irwin</div>
-                            </div>
-                        </div>
+                <h3 class="section-title">Jadwal Kuliah</h3>
+                <div class="schedule-day">
+                    <div class="day-name">Senin</div>
+                    <div class="course-item">
+                        <div class="course-time">10:50 - 14:10</div>
+                        <div class="course-name">Logika & Algoritma</div>
+                        <div class="course-lecturer">Dosen: Pak Yopi</div>
                     </div>
+                </div>
 
-                    <!-- Kamis -->
-                    <div class="schedule-day">
-                        <div class="day-header">
-                            <div class="day-icon">📅</div>
-                            <div class="day-name">Kamis</div>
-                        </div>
-                        <div class="course-item">
-                            <div class="course-time">10:00 - 11:40</div>
-                            <div class="course-details">
-                                <div class="course-name">Bahasa Inggris</div>
-                                <div class="course-lecturer">Dosen: Mis Suwantica [Tica]</div>
-                            </div>
-                        </div>
-                        
+                <div class="schedule-day">
+                    <div class="day-name">Selasa</div>
+                    <div class="course-item">
+                        <div class="course-time">10:50 - 14:10</div>
+                        <div class="course-name">Dasar Pemrograman</div>
+                        <div class="course-lecturer">Dosen: Mr. Lase</div>
+                    </div>
+                </div>
 
-                    <!-- Jumat -->
-                    <div class="schedule-day">
-                        <div class="day-header">
-                            <div class="day-icon">📅</div>
-                            <div class="day-name">Jumaat</div>
-                        </div>
-                        <div class="course-item">
-                            <div class="course-time">07:30 - 10:00</div>
-                            <div class="course-details">
-                                <div class="course-name">Pengantar Teknologi Informasi Dan Komunikasi</div>
-                                <div class="course-lecturer">Dosen: Bu Ade Fitria [Fitria]</div>
-                            </div>
-                        </div>
+                <div class="schedule-day">
+                    <div class="day-name">Rabu</div>
+                    <div class="course-item">
+                        <div class="course-time">10:00 - 12:30</div>
+                        <div class="course-name">Entrepreneurship</div>
+                        <div class="course-lecturer">Dosen: Pak Irwin</div>
+                    </div>
+                </div>
 
-                        
-                        <div class="course-item">
-                            <div class="course-time">10:00 - 11:40</div>
-                            <div class="course-details">
-                                <div class="course-name">Pendidikan Pancasila</div>
-                                <div class="course-lecturer">Dosen: Pak Syamsudin</div>
-                            </div>
-                        </div>
+                <div class="schedule-day">
+                    <div class="day-name">Kamis</div>
+                    <div class="course-item">
+                        <div class="course-time">10:00 - 11:40</div>
+                        <div class="course-name">Bahasa Inggris</div>
+                        <div class="course-lecturer">Dosen: Mis Suwantica [Tica]</div>
+                    </div>
+                </div>
+
+                <div class="schedule-day">
+                    <div class="day-name">Jumat</div>
+                    <div class="course-item">
+                        <div class="course-time">07:30 - 10:00</div>
+                        <div class="course-name">Pengantar Teknologi Informasi Dan Komunikasi</div>
+                        <div class="course-lecturer">Dosen: Bu Ade Fitria [Fitria]</div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-time">10:00 - 11:40</div>
+                        <div class="course-name">Pendidikan Pancasila</div>
+                        <div class="course-lecturer">Dosen: Pak Syamsudin</div>
+                    </div>
+                </div>
             </section>
 
             <!-- Leadership Section -->
             <section class="section" id="pengurus">
-                <h3>Pengurus Kelas</h3>
+                <h3 class="section-title">Pengurus Kelas</h3>
                 <div class="leadership">
                     <div class="leader-card">
-                        <div class="leader-photo" id="ketua-photo">
-                            <span class="placeholder-text">MB</span>
+                        <div class="leader-photo">
+                            <span>MB</span>
                         </div>
                         <div class="leader-role">Ketua Kelas</div>
                         <div class="leader-name">Marsya Briano</div>
@@ -989,8 +980,8 @@
                         <p class="leader-bio">Memimpin dan mengkoordinasi seluruh kegiatan kelas serta menjadi penghubung antara mahasiswa dan dosen.</p>
                     </div>
                     <div class="leader-card">
-                        <div class="leader-photo" id="wakil-photo">
-                            <span class="placeholder-text">AR</span>
+                        <div class="leader-photo">
+                            <span>AR</span>
                         </div>
                         <div class="leader-role">Wakil Ketua Kelas</div>
                         <div class="leader-name">Aditya Rahman</div>
@@ -1002,14 +993,38 @@
 
             <!-- Members Section -->
             <section class="section" id="anggota">
-                <h3>Anggota Kelas</h3>
-                <div class="members-grid" id="members-container">
-                    <!-- Members will be generated by JavaScript -->
-                </div>
+                <h3 class="section-title">Anggota Kelas</h3>
+                <div class="members-grid" id="members-container"></div>
             </section>
 
+            <!-- Gallery/Memories Section -->
+            <section class="section" id="kenangan">
+                <h3 class="section-title">Kenangan Kelas</h3>
+                
+                                    <div class="upload-box">
+                    <h4>Tambah Kenangan</h4>
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="fileInput" accept="image/*">
+                        <div class="upload-icon">📸</div>
+                        <div class="upload-text">Klik untuk upload foto kenangan</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Judul Foto</label>
+                        <input type="text" id="photoTitle" placeholder="Contoh: Belajar Kelompok">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea id="photoDesc" placeholder="Ceritakan momen ini..."></textarea>
+                    </div>
+                    <button class="btn-upload" id="uploadBtn" disabled>Upload Kenangan</button>
+                </div>
+
+                <div class="gallery-container" id="galleryContainer"></div>
+            </section>
+
+            <!-- About Section -->
             <section class="section" id="tentang">
-                <div class="about-class">
+                <div class="about-box">
                     <h4>Tentang Kelas 17.1A.06</h4>
                     <p>Kelas unggulan Teknologi Informasi yang berfokus pada pengembangan skill programming, database, networking, dan teknologi terkini. Kami berkomitmen untuk mencetak profesional IT yang kompeten dan siap bersaing di era digital.</p>
                     <div class="stats">
@@ -1029,51 +1044,39 @@
                 </div>
             </section>
 
+            <!-- Courses Section -->
             <section class="section" id="materi">
-                <h3>Mata Kuliah Semester Ini</h3>
-                <div class="cards">
-                    <div class="card">
-                        <div class="card-icon">🧩</div>
+                <h3 class="section-title">Mata Kuliah Semester Ini</h3>
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <div class="course-icon">🧩</div>
                         <h4>Logika & Algoritma</h4>
                         <p>Mempelajari dasar-dasar pemikiran logis dan algoritma pemrograman untuk memecahkan masalah secara sistematis dan efisien.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">💻</div>
+                    <div class="course-card">
+                        <div class="course-icon">💻</div>
                         <h4>Dasar Pemrograman</h4>
                         <p>Memahami konsep fundamental pemrograman, struktur data dasar, dan praktik coding menggunakan bahasa pemrograman modern.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">💼</div>
+                    <div class="course-card">
+                        <div class="course-icon">💼</div>
                         <h4>Entrepreneurship</h4>
                         <p>Mengembangkan jiwa kewirausahaan dan kemampuan berbisnis di bidang teknologi informasi untuk masa depan yang inovatif.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">🌍</div>
+                    <div class="course-card">
+                        <div class="course-icon">🌍</div>
                         <h4>Bahasa Inggris</h4>
                         <p>Meningkatkan kemampuan komunikasi bahasa Inggris dalam konteks teknologi dan profesional untuk skala global.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">📡</div>
-                        <h4>Pengantar Teknologi Informasi dan Telekomunikasi</h4>
+                    <div class="course-card">
+                        <div class="course-icon">📡</div>
+                        <h4>Pengantar Teknologi Informasi</h4>
                         <p>Memahami konsep dasar teknologi informasi, sistem telekomunikasi, dan perkembangan teknologi digital terkini.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">🇮🇩</div>
+                    <div class="course-card">
+                        <div class="course-icon">🇮🇩</div>
                         <h4>Pendidikan Pancasila</h4>
                         <p>Mempelajari nilai-nilai Pancasila sebagai dasar negara dan mengimplementasikannya dalam kehidupan berbangsa dan bernegara.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section" id="kontak">
-                <h3>Hubungi Kami</h3>
-                <div class="about-class">
-                    <h4>Informasi Kontak</h4>
-                    <p>Untuk informasi lebih lanjut tentang kelas 17.1A.06 atau kerjasama akademik, silakan hubungi kami.</p>
-                    <div style="margin-top: 30px;">
-                        <p><strong>Email:</strong> muhamad.rizki.ramadhan516@gmail.com</p>
-                        <p><strong>Kampus:</strong> Universitas Bina Sarana Informatika</p>
-                        <p><strong>Program Studi:</strong> Teknologi Informasi</p>
                     </div>
                 </div>
             </section>
@@ -1082,13 +1085,14 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Teknologi Informasi UBSI - Kelas 17.1A.06. All Rights Reserved.</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Bersama Membangun Masa Depan Digital Indonesia</p>
+            <p>&copy; 2025 Teknologi Informasi UBSI - Kelas 17.1A.06</p>
+            <p>Universitas Bina Sarana Informatika Kalimalang</p>
+            <p style="margin-top: 12px; font-size: 13px;">🤖 Dibuat dengan bantuan AI - Claude by Anthropic</p>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
+        // Mobile Menu
         const menuToggle = document.getElementById('menuToggle');
         const mainNav = document.getElementById('mainNav');
 
@@ -1097,7 +1101,6 @@
             mainNav.classList.toggle('active');
         });
 
-        // Close menu when clicking on a link
         const navLinks = mainNav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -1106,73 +1109,100 @@
             });
         });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideNav = mainNav.contains(event.target);
-            const isClickOnToggle = menuToggle.contains(event.target);
-            
-            if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('active')) {
-                menuToggle.classList.remove('active');
-                mainNav.classList.remove('active');
-            }
-        });
-
-        // Data anggota kelas
+        // Members Data
         const membersData = [
-            { name: "Aisyah Kirana Renaco", nim: "17250207", photo: null },
-            { name: "Adrian Tri Abrar", nim: "17250666", photo: null },
-            { name: "Arga Putra Fathoni", nim: "17250403", photo: null },
-            { name: "Afan Maulana Habibi", nim: "17250538", photo: null },
-            { name: "Aric Adira", nim: "17250423", photo: null },
-            { name: "Evangga Havid Suwarno", nim: "17250383", photo: null },
-            { name: "Fajar Anugrah Prasetyo", nim: "17250515", photo: null },
-            { name: "Muhamad Rizki Ramadhan", nim: "17250699", photo: null },
-            { name: "M Abdul Rojak Rizki", nim: "17250556", photo: null },
-            { name: "M Syabil Hafiz", nim: "17250076", photo: null },
-            { name: "Muhammad Raihan Athallah", nim: "17250435", photo: null },
-            { name: "Nabil", nim: "172500688", photo: null },
-            { name: "Nadine Deswiani", nim: "1725040392", photo: null },
-            { name: "Rofid Ardyawansyah", nim: "17250502", photo: null },
-            { name: "Saiful Abdullah Raubun", nim: "17250625", photo: null },
-            { name: "Syauqi Mujamil Ramadhan", nim: "17250550", photo: null },
+            { name: "Aisyah Kirana Renaco", nim: "17250207" },
+            { name: "Adrian Tri Abrar", nim: "17250666" },
+            { name: "Arga Putra Fathoni", nim: "17250403" },
+            { name: "Afan Maulana Habibi", nim: "17250538" },
+            { name: "Aric Adira", nim: "17250423" },
+            { name: "Evangga Havid Suwarno", nim: "17250383" },
+            { name: "Fajar Anugrah Prasetyo", nim: "17250515" },
+            { name: "Muhamad Rizki Ramadhan", nim: "17250699" },
+            { name: "M Abdul Rojak Rizki", nim: "17250556" },
+            { name: "M Syabil Hafiz", nim: "17250076" },
+            { name: "Muhammad Raihan Athallah", nim: "17250435" },
+            { name: "Nabil", nim: "172500688" },
+            { name: "Nadine Deswiani", nim: "1725040392" },
+            { name: "Rofid Ardyawansyah", nim: "17250502" },
+            { name: "Saiful Abdullah Raubun", nim: "17250625" },
+            { name: "Syauqi Mujamil Ramadhan", nim: "17250550" },
         ];
-
-        // URL foto untuk Ketua dan Wakil Ketua
-        const leaderPhotos = {
-            ketua: null,
-            wakil: null
-        };
-
-        // Set foto ketua dan wakil
-        function setLeaderPhoto(elementId, photoUrl, initials) {
-            const photoElement = document.getElementById(elementId);
-            if (photoUrl) {
-                photoElement.innerHTML = `<img src="${photoUrl}" alt="Foto">`;
-            } else {
-                photoElement.innerHTML = `<span class="placeholder-text">${initials}</span>`;
-                photoElement.classList.add('placeholder');
-            }
-        }
-
-        setLeaderPhoto('ketua-photo', leaderPhotos.ketua, 'MB');
-        setLeaderPhoto('wakil-photo', leaderPhotos.wakil, 'AR');
 
         // Generate member cards
         const membersContainer = document.getElementById('members-container');
         membersData.forEach((member, index) => {
             const initial = member.name.charAt(0).toUpperCase();
-            const photoContent = member.photo 
-                ? `<img src="${member.photo}" alt="${member.name}">`
-                : initial;
-            
-            const memberCard = `
-                <div class="member-card">
-                    <div class="member-photo">${photoContent}</div>
-                    <div class="member-name">${member.name}</div>
-                    <div class="member-nim">NIM: ${member.nim}</div>
-                </div>
+            const memberCard = document.createElement('div');
+            memberCard.className = 'member-card';
+            memberCard.style.animationDelay = `${index * 0.05}s`;
+            memberCard.innerHTML = `
+                <div class="member-photo">${initial}</div>
+                <div class="member-name">${member.name}</div>
+                <div class="member-nim">NIM: ${member.nim}</div>
             `;
-            membersContainer.innerHTML += memberCard;
+            membersContainer.appendChild(memberCard);
+        });
+
+        // Gallery Upload System
+        let selectedFile = null;
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const photoTitle = document.getElementById('photoTitle');
+        const photoDesc = document.getElementById('photoDesc');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const galleryContainer = document.getElementById('galleryContainer');
+
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                selectedFile = e.target.files[0];
+                uploadArea.querySelector('.upload-text').textContent = `File dipilih: ${selectedFile.name}`;
+                checkUploadReady();
+            }
+        });
+
+        photoTitle.addEventListener('input', checkUploadReady);
+        photoDesc.addEventListener('input', checkUploadReady);
+
+        function checkUploadReady() {
+            if (selectedFile && photoTitle.value.trim() && photoDesc.value.trim()) {
+                uploadBtn.disabled = false;
+            } else {
+                uploadBtn.disabled = true;
+            }
+        }
+
+        uploadBtn.addEventListener('click', () => {
+            if (selectedFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.innerHTML = `
+                        <div class="gallery-image">
+                            <img src="${e.target.result}" alt="${photoTitle.value}">
+                        </div>
+                        <div class="gallery-caption">
+                            <h5>${photoTitle.value}</h5>
+                            <p>${photoDesc.value}</p>
+                        </div>
+                    `;
+                    galleryContainer.insertBefore(galleryItem, galleryContainer.firstChild);
+                    
+                    // Reset form
+                    fileInput.value = '';
+                    photoTitle.value = '';
+                    photoDesc.value = '';
+                    selectedFile = null;
+                    uploadArea.querySelector('.upload-text').textContent = 'Klik untuk upload foto kenangan';
+                    uploadBtn.disabled = true;
+                };
+                reader.readAsDataURL(selectedFile);
+            }
         });
 
         // Smooth scrolling
@@ -1187,6 +1217,25 @@
                     });
                 }
             });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>
