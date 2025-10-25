@@ -1144,7 +1144,7 @@
             membersContainer.appendChild(memberCard);
         });
 
-        // Gallery Upload System
+        // Gallery Upload System with Storage
         let selectedFile = null;
         const fileInput = document.getElementById('fileInput');
         const uploadArea = document.getElementById('uploadArea');
@@ -1152,6 +1152,9 @@
         const photoDesc = document.getElementById('photoDesc');
         const uploadBtn = document.getElementById('uploadBtn');
         const galleryContainer = document.getElementById('galleryContainer');
+
+        // Load saved photos on page load
+        loadGallery();
 
         uploadArea.addEventListener('click', () => {
             fileInput.click();
@@ -1176,30 +1179,92 @@
             }
         }
 
-        uploadBtn.addEventListener('click', () => {
-            if (selectedFile) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
-                    galleryItem.innerHTML = `
-                        <div class="gallery-image">
-                            <img src="${e.target.result}" alt="${photoTitle.value}">
-                        </div>
-                        <div class="gallery-caption">
-                            <h5>${photoTitle.value}</h5>
-                            <p>${photoDesc.value}</p>
-                        </div>
-                    `;
-                    galleryContainer.insertBefore(galleryItem, galleryContainer.firstChild);
+        async function loadGallery() {
+            try {
+                // List all gallery items
+                const result = await window.storage.list('gallery:', true);
+                
+                if (result && result.keys && result.keys.length > 0) {
+                    // Sort by timestamp (newest first)
+                    const sortedKeys = result.keys.sort().reverse();
                     
-                    // Reset form
-                    fileInput.value = '';
-                    photoTitle.value = '';
-                    photoDesc.value = '';
-                    selectedFile = null;
-                    uploadArea.querySelector('.upload-text').textContent = 'Klik untuk upload foto kenangan';
-                    uploadBtn.disabled = true;
+                    for (const key of sortedKeys) {
+                        const itemResult = await window.storage.get(key, true);
+                        if (itemResult && itemResult.value) {
+                            const photo = JSON.parse(itemResult.value);
+                            displayPhoto(photo);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log('Loading gallery...', error);
+            }
+        }
+
+        function displayPhoto(photo) {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.innerHTML = `
+                <div class="gallery-image">
+                    <img src="${photo.image}" alt="${photo.title}">
+                </div>
+                <div class="gallery-caption">
+                    <h5>${photo.title}</h5>
+                    <p>${photo.description}</p>
+                    <small style="color: var(--gray); font-size: 12px; display: block; margin-top: 8px;">
+                        ${photo.date}
+                    </small>
+                </div>
+            `;
+            galleryContainer.insertBefore(galleryItem, galleryContainer.firstChild);
+        }
+
+        uploadBtn.addEventListener('click', async () => {
+            if (selectedFile) {
+                uploadBtn.disabled = true;
+                uploadBtn.textContent = 'Mengupload...';
+                
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    try {
+                        const timestamp = Date.now();
+                        const photo = {
+                            id: timestamp,
+                            title: photoTitle.value.trim(),
+                            description: photoDesc.value.trim(),
+                            image: e.target.result,
+                            date: new Date().toLocaleString('id-ID', {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            })
+                        };
+
+                        // Save to shared storage so everyone can see it
+                        const key = `gallery:${timestamp}`;
+                        await window.storage.set(key, JSON.stringify(photo), true);
+                        
+                        // Display the photo
+                        displayPhoto(photo);
+                        
+                        // Reset form
+                        fileInput.value = '';
+                        photoTitle.value = '';
+                        photoDesc.value = '';
+                        selectedFile = null;
+                        uploadArea.querySelector('.upload-text').textContent = 'Klik untuk upload foto kenangan';
+                        uploadBtn.textContent = 'Upload Kenangan';
+                        uploadBtn.disabled = true;
+                        
+                        alert('✅ Foto berhasil diupload dan bisa dilihat semua orang!');
+                    } catch (error) {
+                        console.error('Error uploading:', error);
+                        alert('❌ Gagal mengupload foto. Pastikan foto tidak terlalu besar (max 3MB)');
+                        uploadBtn.disabled = false;
+                        uploadBtn.textContent = 'Upload Kenangan';
+                    }
                 };
                 reader.readAsDataURL(selectedFile);
             }
